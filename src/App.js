@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import './App.css';
 import VehicleList from './VehicleList';
 import TrafficLight from './TrafficLight';
@@ -7,6 +8,7 @@ function App() {
   // lightColor should be a string that starts out as 'red'
   // lizardSize should be a number that starts out as 10
   // alienSize should be a number that starts out as 10
+  const [alienSize, setAlienSize] = useState(10);
   // traffic is complicated. It should be an array of strings that starts out as ['car', 'truck']
 
   return (
@@ -14,10 +16,11 @@ function App() {
       <div className="fight">
         <div className="monster">
           {/* the width of the alien should be ten times whatever the alien size is in state */}
-          <img src="alien.png" width={20} />
+          <img src="alien.png" width={alienSize * 10}/>
           <div className='buttons'>
             {/* when you click this button, the alien's size in state should go up by one */}
-            <button>Oh no! The alien is gobblin up all the electricity!</button>
+            <button onClick={() => setAlienSize(alienSize + 1)}>
+              Oh no! The alien is gobblin up all the electricity!</button>
             {/* when you click this button, the lizard's size in state should go down by one */}
             <button >Amazing! The alien zapped the lizard!</button>
           </div>
@@ -33,7 +36,7 @@ function App() {
           </div>
         </div>
       </div>
-      <TrafficLight color={lightColor} />
+      {/* <TrafficLight color={lightColor} /> */}
       <div className="buttons">
         {/* when you click this button, the color of the light in state should be set to 'red' */}
         <button>Red</button>
